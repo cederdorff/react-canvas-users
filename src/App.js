@@ -4,6 +4,7 @@ import User from "./components/User";
 function App() {
     const [users, setUsers] = useState([]);
     const [showTeachers, setShowTeachers] = useState(true);
+    const [showStudents, setShowStudents] = useState(true);
     const [searchValue, setSearchValue] = useState("");
     const [sortBy, setSortBy] = useState("name");
 
@@ -17,6 +18,9 @@ function App() {
 
     if (!showTeachers) {
         usersToDisplay = usersToDisplay.filter(user => user.enrollment_type === "Student");
+    }
+    if (!showStudents) {
+        usersToDisplay = usersToDisplay.filter(user => user.enrollment_type === "Teacher");
     }
     if (searchValue) {
         usersToDisplay = usersToDisplay.filter(user => user.name.toLowerCase().includes(searchValue.toLowerCase()));
@@ -34,6 +38,10 @@ function App() {
         <>
             <header>
                 <h1>Canvas Users</h1>
+                <label>
+                    Show Students
+                    <input type="checkbox" checked={showStudents} onChange={() => setShowStudents(!showStudents)} />
+                </label>
                 <label>
                     Show Teachers
                     <input type="checkbox" checked={showTeachers} onChange={() => setShowTeachers(!showTeachers)} />
