@@ -3,39 +3,30 @@ import User from "./components/User";
 
 function App() {
     const [users, setUsers] = useState([]);
-    const [usersToDisplay, setUsersToDisplay] = useState([]);
     const [showTeachers, setShowTeachers] = useState(true);
     const [searchValue, setSearchValue] = useState("");
     const [sortBy, setSortBy] = useState("name");
 
     useEffect(() => {
-        async function getUsers() {
-            const response = await fetch("https://raw.githubusercontent.com/cederdorff/web-frontend/main/data/wu-e22a.json");
-            const data = await response.json();
-            setUsers(data);
-        }
-
-        getUsers();
+        fetch("https://raw.githubusercontent.com/cederdorff/web-frontend/main/data/wu-e22a.json")
+            .then(res => res.json())
+            .then(setUsers);
     }, []);
 
-    useEffect(() => {
-        let result = [...users]; // cope the users array
-        if (!showTeachers) {
-            result = result.filter(user => user.enrollment_type === "Student");
-        }
+    let usersToDisplay = [...users]; // copy the users array
+    if (!showTeachers) {
+        usersToDisplay = usersToDisplay.filter(user => user.enrollment_type === "Student");
+    }
 
-        if (searchValue) {
-            result = result.filter(user => user.name.toLowerCase().includes(searchValue.toLowerCase()));
-        }
+    if (searchValue) {
+        usersToDisplay = usersToDisplay.filter(user => user.name.toLowerCase().includes(searchValue.toLowerCase()));
+    }
 
-        if (sortBy === "sortable_name") {
-            result = result.sort((user1, user2) => user1.sortable_name.localeCompare(user2.sortable_name));
-        } else if (sortBy === "name") {
-            result = result.sort((user1, user2) => user1.name.localeCompare(user2.name));
-        }
-
-        setUsersToDisplay(result);
-    }, [searchValue, showTeachers, sortBy, users]);
+    if (sortBy === "sortable_name") {
+        usersToDisplay = usersToDisplay.sort((user1, user2) => user1.sortable_name.localeCompare(user2.sortable_name));
+    } else if (sortBy === "name") {
+        usersToDisplay = usersToDisplay.sort((user1, user2) => user1.name.localeCompare(user2.name));
+    }
 
     return (
         <>
