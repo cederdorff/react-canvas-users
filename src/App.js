@@ -17,10 +17,7 @@ function App() {
     if (!showTeachers) {
         usersToDisplay = usersToDisplay.filter(user => user.enrollment_type === "Student");
     }
-
-    if (searchValue) {
-        usersToDisplay = usersToDisplay.filter(user => user.name.toLowerCase().includes(searchValue.toLowerCase()));
-    }
+    usersToDisplay = usersToDisplay.filter(user => user.name.toLowerCase().includes(searchValue.toLowerCase()));
 
     if (sortBy === "sortable_name") {
         usersToDisplay = usersToDisplay.sort((user1, user2) => user1.sortable_name.localeCompare(user2.sortable_name));
