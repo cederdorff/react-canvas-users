@@ -26,7 +26,7 @@ function App() {
         usersToDisplay = usersToDisplay.filter(user => user.name.toLowerCase().includes(searchValue.toLowerCase()));
     }
 
-    usersToDisplay = usersToDisplay.sort((user1, user2) => user1[sortBy].localeCompare(user2[sortBy]));
+    usersToDisplay.sort((user1, user2) => user1[sortBy].localeCompare(user2[sortBy]));
 
     return (
         <>
