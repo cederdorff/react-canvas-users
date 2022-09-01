@@ -19,7 +19,7 @@ function App() {
     }, []);
 
     useEffect(() => {
-        let result = [...users]; // cope the users array
+        let result = [...users]; // copy users array
         if (!showTeachers) {
             result = result.filter(user => user.enrollment_type === "Student");
         }
