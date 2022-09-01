@@ -13,16 +13,21 @@ function App() {
             .then(setUsers);
     }, []);
 
-    let usersToDisplay = [...users]; // copy the users array
+    let usersToDisplay = [...users]; // copy users array
+
     if (!showTeachers) {
         usersToDisplay = usersToDisplay.filter(user => user.enrollment_type === "Student");
     }
-    usersToDisplay = usersToDisplay.filter(user => user.name.toLowerCase().includes(searchValue.toLowerCase()));
+    if (searchValue) {
+        usersToDisplay = usersToDisplay.filter(user => user.name.toLowerCase().includes(searchValue.toLowerCase()));
+    }
 
     if (sortBy === "sortable_name") {
         usersToDisplay = usersToDisplay.sort((user1, user2) => user1.sortable_name.localeCompare(user2.sortable_name));
     } else if (sortBy === "name") {
         usersToDisplay = usersToDisplay.sort((user1, user2) => user1.name.localeCompare(user2.name));
+    } else if (sortBy === "enrollment_type") {
+        usersToDisplay = usersToDisplay.sort((user1, user2) => user1.enrollment_type.localeCompare(user2.enrollment_type));
     }
 
     return (
@@ -42,6 +47,7 @@ function App() {
                     <select onChange={e => setSortBy(e.target.value)}>
                         <option value="name">First name</option>
                         <option value="sortable_name">Last name</option>
+                        <option value="enrollment_type">Enrollment</option>
                     </select>
                 </label>
             </header>
