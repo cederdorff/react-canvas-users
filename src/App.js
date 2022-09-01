@@ -26,13 +26,7 @@ function App() {
         usersToDisplay = usersToDisplay.filter(user => user.name.toLowerCase().includes(searchValue.toLowerCase()));
     }
 
-    if (sortBy === "sortable_name") {
-        usersToDisplay = usersToDisplay.sort((user1, user2) => user1.sortable_name.localeCompare(user2.sortable_name));
-    } else if (sortBy === "name") {
-        usersToDisplay = usersToDisplay.sort((user1, user2) => user1.name.localeCompare(user2.name));
-    } else if (sortBy === "enrollment_type") {
-        usersToDisplay = usersToDisplay.sort((user1, user2) => user1.enrollment_type.localeCompare(user2.enrollment_type));
-    }
+    usersToDisplay = usersToDisplay.sort((user1, user2) => user1[sortBy].localeCompare(user2[sortBy]));
 
     return (
         <>
