@@ -12,21 +12,17 @@
     --text-color-in-stock: rgb(172, 198, 201);
 }
 
+html,
 body {
     margin: 0;
+    padding: 0;
     font-family: var(--font-family);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 header {
     background-color: var(--green);
     color: var(--text-color-light);
-    padding: 13.5px;
+    padding: 1em;
     position: fixed;
     top: 0;
     left: 0;
@@ -51,8 +47,9 @@ select {
 }
 
 main {
-    padding: 131px 0 0;
+    padding: 141.5px 0 0;
     animation: fadeIn 0.4s;
+    background-color: var(--light-green);
 }
 
 /* ---------- animations ---------- */
@@ -83,7 +80,6 @@ main {
     grid-template-columns: 1fr;
     padding: 1em;
     gap: 1em;
-    background-color: var(--light-green);
 }
 
 @media (min-width: 600px) {
