@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function NewUserForm({ handleCreate }) {
+export default function NewUserForm({ handleSave }) {
     const [name, setName] = useState("");
     const [mail, setMail] = useState("");
     const [avatarUrl, setAvatarUrl] = useState("");
@@ -25,7 +25,7 @@ export default function NewUserForm({ handleCreate }) {
             id: id
         };
 
-        handleCreate(newUser);
+        handleSave(newUser);
         e.target.reset(); // reset form
     }
 

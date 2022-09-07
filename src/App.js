@@ -66,7 +66,7 @@ function App() {
                     ))}
                 </section>
             </main>
-            <NewUserForm handleCreate={createNewUser} />
+            <NewUserForm handleSave={createNewUser} />
         </>
     );
 }
