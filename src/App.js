@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import NewUserForm from "./components/NewUserForm";
 import User from "./components/User";
 
 function App() {
@@ -27,6 +28,11 @@ function App() {
     }
 
     usersToDisplay.sort((user1, user2) => user1[sortBy].localeCompare(user2[sortBy]));
+
+    function createNewUser(user) {
+        console.log(user);
+        setUsers(prevUsers => [...prevUsers, user]);
+    }
 
     return (
         <>
@@ -60,6 +66,7 @@ function App() {
                     ))}
                 </section>
             </main>
+            <NewUserForm handleCreate={createNewUser} />
         </>
     );
 }
