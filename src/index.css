@@ -151,8 +151,10 @@ form input {
 form select {
     width: 100%;
     max-width: 100px;
-    background-color: var(--light-green);
+    padding: 0.92em;
     color: var(--text-color-dark);
+    border-color: var(--green);
+    border-width: 2px;
 }
 
 dialog {
